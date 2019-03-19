@@ -12,12 +12,12 @@ import (
 func main() {
 
         uploader := s3manager.NewUploader(newSession())
-        f, _  := os.Open("file_6GB")
+        f, _  := os.Open("<Your-Local-File>")  
         defer f.Close()
 
         result, err := uploader.Upload(&s3manager.UploadInput{
-                Bucket: aws.String("cn-north-1-zhusiyuan1"),
-                Key:    aws.String("s3manager_6GB"),
+                Bucket: aws.String("<Your-Bucket>"),  
+                Key:    aws.String("<Your-Object>"),   
                 Body:   f,
         })
         if err != nil {
@@ -27,17 +27,17 @@ func main() {
 }
 
 func newSession() (*session.Session) {
-        ak := ""
-        sk := ""
-        token := ""
+        ak := "<Your-AK>"
+        sk := "<Your-SK>"
+        token := ""   //Token留空
 
         creds := credentials.NewStaticCredentials(ak, sk, token)
         creds.Get()
 
         config := &aws.Config{
-                Region          :aws.String("cn-north-1"),
-                Endpoint        :aws.String("s3.cn-north-1.jcloudcs.com"),
-                DisableSSL      :aws.Bool(true),
+                Region          :aws.String("cn-north-1"),  //Bucket所在Region
+                Endpoint        :aws.String("s3.cn-north-1.jcloudcs.com"),  //Bucket所在Endpoint
+                DisableSSL      :aws.Bool(false),
                 Credentials     :creds,
         }
         return session.New(config)
