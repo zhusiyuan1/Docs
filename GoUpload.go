@@ -1,4 +1,3 @@
-```GO
 package main
 
 import (
@@ -49,4 +48,3 @@ func exitErrorf(msg string, args ...interface{}) {
         os.Exit(1)
 }
 
-```
