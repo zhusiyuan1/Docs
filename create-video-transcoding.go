@@ -1,8 +1,8 @@
 
 	input := &s3.PutObjectInput{
-		Body:   NewReader(33, m.Size),   //传空Body
-		Bucket: &m.Bucket,
-		Key:    &m.Key,
+		Body:   NewReader(33, m.Size),   // 传空Body
+		Bucket: &m.Bucket, 		 // 转码源文件所在bucket
+		Key:    &m.Key,			 // 转码源文件，需提前上传
 	}
 	req, _ := m.S3.PutObjectRequest(input)
 	// 在putObject请求的基础上，添加以下query字符串，具体各个参数含义参考：https://docs.jdcloud.com/cn/object-storage-service/create-video-transcoding
