@@ -16,3 +16,23 @@
 	if err != nil {
 		log.Println("PutObject error: ", err)
 	}
+
+
+
+----------------
+
+// 查询task状态
+
+req, resp := client.ListBucketsRequest(params)
+
+// 在listBuckets请求的基础上，添加以下query字符串，具体各个参数含义参考：https://docs.jdcloud.com/cn/object-storage-service/query-video-task
+
+req.HTTPRequest.URL.RawQuery = "getVideoTask&taskId=11311576e2ee46d3b11dd4672d8e13c4"
+
+err := req.Send()
+if err == nil { // resp is now filled
+    fmt.Println(resp)
+}
+
+
+
