@@ -26,16 +26,16 @@
 
 // 查询task状态
 
-req, resp := client.ListBucketsRequest(params)
+	// 在listBuckets请求的基础上，添加以下query字符串，具体各个参数含义参考：https://docs.jdcloud.com/cn/object-storage-service/query-video-task
+	//使用api.go中新封装的NewPutObjectRequest
+	req, resp := m.S3.NewListBucketsRequest(&s3.ListBucketsInput{})
+	req.HTTPRequest.URL.RawQuery = "getVideoTask&taskId=ffc736fc8bd14d3c9a42934b9cafd36b"
+	err1 := req.Send()
+	b, _ := ioutil.ReadAll(resp.Body)
+	taskStatus := string(b)  //Body流读为字符串，，需解析json
 
-// 在listBuckets请求的基础上，添加以下query字符串，具体各个参数含义参考：https://docs.jdcloud.com/cn/object-storage-service/query-video-task
-
-req.HTTPRequest.URL.RawQuery = "getVideoTask&taskId=11311576e2ee46d3b11dd4672d8e13c4"
-
-err := req.Send()
-if err == nil { // resp is now filled
-    fmt.Println(resp)
-}
+// body格式为：
+{"taskId":"ffc736fc8bd14d3c9a42934b9cafd36b","status":3,"bucket":"test-zhusiyuan","objectKey":"video_file.mp4","targetBucket":null,"options":"transcoder/format/mp4/res/480x360/videoBitrate/440000/audioBitrate/48000/saveas/dGVzdC16aHVzaXl1YW46cmVzdWx0","updateTime":1570872579000,"createTime":1570872557000,"taskOutputObjectList":[{"tId":146172,"objectKey":"result.mp4","bucket":"test-zhusiyuan"}]}
 
 
 
