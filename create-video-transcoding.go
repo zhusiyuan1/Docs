@@ -4,7 +4,8 @@
 		Bucket: &m.Bucket, 		 // 转码源文件所在bucket
 		Key:    &m.Key,			 // 转码源文件，需提前上传
 	}
-	req, _ := m.S3.PutObjectRequest(input)
+	
+	req, out := m.S3.NewPutObjectRequest(input)   //使用api.go中新封装的NewPutObjectRequest
 	// 在putObject请求的基础上，添加以下query字符串，具体各个参数含义参考：https://docs.jdcloud.com/cn/object-storage-service/create-video-transcoding
 	// expires：过期时间
 	// policy：转码策略  
@@ -16,6 +17,8 @@
 	if err != nil {
 		log.Println("PutObject error: ", err)
 	}
+	p, _ := ioutil.ReadAll(out.Body)
+	taskIdString := string(p)   //Body流读为字符串，body 格式为{"taskId": "67ca6aa8a3014acb81b3a71066336b21"}，需解析json
 
 
 
