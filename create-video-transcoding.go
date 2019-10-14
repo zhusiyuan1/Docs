@@ -38,5 +38,5 @@
 {"taskId":"ffc736fc8bd14d3c9a42934b9cafd36b","status":3,"bucket":"test-zhusiyuan","objectKey":"video_file.mp4","targetBucket":null,"options":"transcoder/format/mp4/res/480x360/videoBitrate/440000/audioBitrate/48000/saveas/dGVzdC16aHVzaXl1YW46cmVzdWx0","updateTime":1570872579000,"createTime":1570872557000,"taskOutputObjectList":[{"tId":146172,"objectKey":"result.mp4","bucket":"test-zhusiyuan"}]}
 
 关键字段如下：
-// status：任务的状态，1是未处理，2是开始处理，3是处理成功
+// status：任务的状态，1是未处理，2是开始处理，3是处理成功，4是失败
 
