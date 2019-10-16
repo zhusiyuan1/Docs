@@ -1,4 +1,4 @@
-// 
+// 安装AWS CPP SDK请参考 https://docs.aws.amazon.com/zh_cn/sdk-for-cpp/v1/developer-guide/setup.html
 
 #include <aws/core/Aws.h>
 #include <aws/s3/S3Client.h>
@@ -33,12 +33,11 @@ bool put_s3_object(const Aws::String& s3_bucket_name,
         return false;
     }
 
-    // If region is specified, use it
     Aws::Client::ClientConfiguration clientConfig;
-    clientConfig.endpointOverride = Aws::String("s3.cn-north-1.jdcloud-oss.com");
+    clientConfig.endpointOverride = Aws::String("s3.cn-north-1.jdcloud-oss.com");  // 使用京东云OSS的域名
     Aws::String ak = "xxx"; 
     Aws::String sk = "xxx";
-    Aws::S3::S3Client s3_client(Aws::Auth::AWSCredentials(ak,sk),clientConfig);
+    Aws::S3::S3Client s3_client(Aws::Auth::AWSCredentials(ak,sk),clientConfig);  //使用京东云AKSK、endpoint构造s3client
     
     Aws::S3::Model::PutObjectRequest object_request;
 
