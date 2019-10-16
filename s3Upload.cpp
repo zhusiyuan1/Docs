@@ -1,4 +1,10 @@
 // 安装AWS CPP SDK请参考 https://docs.aws.amazon.com/zh_cn/sdk-for-cpp/v1/developer-guide/setup.html
+// git clone https://github.com/aws/aws-sdk-cpp.git
+// mkdir sdk_build
+// cd sdk_build
+// cmake  -DBUILD_ONLY="s3"  <path/to/sdk/source>  // 仅编译s3
+// make
+// make install
 
 #include <aws/core/Aws.h>
 #include <aws/s3/S3Client.h>
