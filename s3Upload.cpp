@@ -19,7 +19,7 @@
 #include <fstream>
 int main(int argc, char** argv)
 {
-    const Aws::String bucket_name = "lewzylu05-1252448703";
+    const Aws::String bucket_name = "your-bucket";
     const Aws::String key_name = "a.cpp";
     const Aws::String file_name_in = "a.cpp";
     const Aws::String file_name_out = "s.cpp";
